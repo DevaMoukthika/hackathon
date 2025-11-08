@@ -1,0 +1,9 @@
+robotframework
+robotframework-requests
+requests
+pyyaml
+robotframework-jsonlibrary
+robotframework-datadriver
+robotframework-seleniumlibrary
+selenium>=4.0.0
+webdriver-manager

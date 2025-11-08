@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+  stages {
+    stage('Prepare') {
+      steps {
+        powershell 'python -m venv .venv; .\\.venv\\Scripts\\Activate.ps1; python -m pip install --upgrade pip'
+        powershell 'python -m pip install -r API\\robot_tests\\requirements.txt'
+      }
+    }
+    stage('Run Tests') {
+      steps {
+        powershell 'robot --outputdir API\\robot_tests\\reports API\\robot_tests\\tests\\suites'
+      }
+    }
+    stage('Archive') {
+      steps {
+        archiveArtifacts artifacts: 'API/robot_tests/reports/**', fingerprint: true
+      }
+    }
+  }
+  post {
+    always {
+      junit allowEmptyResults: true, testResults: 'API/robot_tests/reports/output.xml'
+    }
+  }
+}
