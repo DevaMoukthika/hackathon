@@ -1,0 +1,11 @@
+# Core dependencies
+robotframework
+robotframework-seleniumlibrary
+selenium>=4.0.0
+webdriver-manager
+robotframework-requests
+
+# Optional tools
+pabot
+allure-python-commons
+allure-robotframework
